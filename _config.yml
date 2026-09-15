@@ -1,9 +1,9 @@
 theme: jekyll-theme-minimal
-title: RedTheGandalf's blog
+title: Droidwhale's blog
 description: I'll share my reasearch here :)
 
-github_username: redthegandalf
-twitter_username: redthegandalf
+github_username: droidwhale
+twitter_username: droidwhale
 
 plugins:
   - jekyll-feed
