@@ -1,3 +1,11 @@
+---
+layout: default
+title: "Analysing multi-stage stealer infection and related infrastructure"
+author: "droidwhale"
+date: 2026-09-15
+tags: [research]
+---
+
 # Analysing multi-stage stealer infection and related infrastructure
 
 Hi folks ! Welcome to my very first blogpost ! Hopefully, this should be the first one of a long serie of blogposts that speak about how to reverse infection chains and try to link them to more global campaigns, **as an independant researcher with few ressources**.
@@ -261,18 +269,18 @@ Here is a quick summary of the capabilities of the malware :
 
 ### Random and funny stuff
 Attackers stored their SMTP C2 credentials into the code, if you want you can go and take a look at it : 
-![lol](attachments/random_lol.png)
+![lol](./attachments/random_lol.png)
 
 ## Quickly investigating infrastructure
 
 Let's move to the funny part : infrastructure investigation. Our starting point is an URL pattern `78[.]159[.]131[.]228/k/jjscotttbpl[.]dat`. Let's check if we can uncover similar servers distributing this malware. To do so, we are doing a wildcard search based the filename modifier on URLscan like this : `filename:"jjscotttbpl.dat"`. Here are the results : 
-![urlscan1](attachments/urlscan_res1.png)
+![urlscan1](./attachments/urlscan_res1.png)
 What can we learn from this ? We have two active IP distributing this malware and it seems to be a recent infrastructure, as the oldest scan is nine days ago (by the time of writing). 
 
 So we have a second IoC :)) : `5[.]253[.]59[.]16`.
 
 But, let's try to enlarge our searching range by running this query`page.url.keyword:/.*\/k\/.*\.dat/` and .... BINGOOOO (results are collapsed by hostname):
-![urlscan2](attachments/urlscan2.png)
+![urlscan2](./attachments/urlscan2.png)
 
 With this request, we retrieved three news IoCs :
 * Two filenames : `bplplatatenera.dat` and `ofelia.dat`
