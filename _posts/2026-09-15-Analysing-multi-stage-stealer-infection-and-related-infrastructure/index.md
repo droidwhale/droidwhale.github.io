@@ -91,7 +91,7 @@ $o=New-Object byte[] ($raw.Length-4-$rl);
 & ([scriptblock]::Create($ps))
 ```
 
-To be honest, I analyzed it using the "lazy" mode. I just isolated this into an other powershell script, replaced the last instructions with `[System.IO.File]::WriteAllBytes("./payload.exe", $o)` to write the content `$o` into a file and just ran it in a linux VM.  . Annnnnnnnddddd .......![filetype_pld](attachments/file_payload.png) Here we are ! It seems we have extracted the second stage into a brand new file named : payload.exe ! FYI, after some research on the internet, I found out that this was a common technique used by attackers to inject .NET Assembly into process' memory. 
+To be honest, I analyzed it using the "lazy" mode. I just isolated this into an other powershell script, replaced the last instructions with `[System.IO.File]::WriteAllBytes("./payload.exe", $o)` to write the content `$o` into a file and just ran it in a linux VM.  . Annnnnnnnddddd .......![filetype_pld](../../assets/20260915/file_payload.png) Here we are ! It seems we have extracted the second stage into a brand new file named : payload.exe ! FYI, after some research on the internet, I found out that this was a common technique used by attackers to inject .NET Assembly into process' memory. 
 
 Let's move to the second stage : "the dropper".
 
@@ -114,7 +114,7 @@ I must be honest with you guys :
 * It was a sunny day and I had to go for a drink with my 2 last friends
 
 Considering all these factors, I uploaded it to Hybrid Analysis sandbox ... and it was a good choice :
-![sandbox](attachments/hybrid_sandbox.png)
+![sandbox](../../assets/20260915/hybrid_sandbox.png)
 
 The report is quite long, and do not contain that much information. But it shows us that it's clearly not the last stage of the infection chain, and that it seems to be the dropper. In fact, network indicators gives us interesting insights :
 
@@ -147,7 +147,7 @@ I promise, I will "reverse" it for real in the next part : strings, ILSpy, my br
 ## Unobfuscated full option, multi-purpose infostealer (stage 3)
 
 This file has a known hash, with a highly malicious score on VT :
-![vt](attachments/vt.png)
+![vt](../../assets/20260915/vt.png)
 
 Dumb, as usual, I tried to "cat" the file. Yup, it's a PE file (I said I was not that smart).
 
@@ -269,18 +269,18 @@ Here is a quick summary of the capabilities of the malware :
 
 ### Random and funny stuff
 Attackers stored their SMTP C2 credentials into the code, if you want you can go and take a look at it : 
-![lol](./attachments/random_lol.png)
+![lol](../../assets/20260915/random_lol.png)
 
 ## Quickly investigating infrastructure
 
 Let's move to the funny part : infrastructure investigation. Our starting point is an URL pattern `78[.]159[.]131[.]228/k/jjscotttbpl[.]dat`. Let's check if we can uncover similar servers distributing this malware. To do so, we are doing a wildcard search based the filename modifier on URLscan like this : `filename:"jjscotttbpl.dat"`. Here are the results : 
-![urlscan1](./attachments/urlscan_res1.png)
+![urlscan1](../../assets/20260915/urlscan_res1.png)
 What can we learn from this ? We have two active IP distributing this malware and it seems to be a recent infrastructure, as the oldest scan is nine days ago (by the time of writing). 
 
 So we have a second IoC :)) : `5[.]253[.]59[.]16`.
 
 But, let's try to enlarge our searching range by running this query`page.url.keyword:/.*\/k\/.*\.dat/` and .... BINGOOOO (results are collapsed by hostname):
-![urlscan2](./attachments/urlscan2.png)
+![urlscan2](../../assets/20260915/urlscan2.png)
 
 With this request, we retrieved three news IoCs :
 * Two filenames : `bplplatatenera.dat` and `ofelia.dat`
