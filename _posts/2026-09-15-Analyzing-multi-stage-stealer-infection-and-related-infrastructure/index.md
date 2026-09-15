@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Analysing multi-stage stealer infection and related infrastructure"
+title: "Analyzing multi-stage stealer infection and related infrastructure"
 author: "droidwhale"
 date: 2026-09-15
 tags: [research]
 ---
 
-# Analysing multi-stage stealer infection and related infrastructure
+# Analyzing multi-stage stealer infection and related infrastructure
 
 Hi folks ! Welcome to my very first blogpost ! Hopefully, this should be the first one of a long serie of blogposts that speak about how to reverse infection chains and try to link them to more global campaigns, **as an independant researcher with few ressources**.
 
