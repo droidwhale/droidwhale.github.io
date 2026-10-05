@@ -6,7 +6,8 @@ title: Droidwhale's blog 🐳
 description: I'll share my research here :)
 
 github_username: droidwhale
-twitter_username: droidwhale
+x_username: droidwhale
+bluesky_username: droidwhale.bsky.social
 
 plugins:
   - jekyll-feed

@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<div class="home-intro">
+  {{ content }}
+
+  <!-- Boutons d'action et réseaux sociaux -->
+  <div class="home-buttons">
+    <a href="{{ '/about' | relative_url }}" class="btn btn-about">À propos</a>
+    
+    {% if site.github_username %}
+      <a href="https://github.com/{{ site.github_username }}" class="btn btn-social" target="_blank" rel="noopener">GitHub</a>
+    {% endif %}
+    
+    {% if site.x_username %}
+      <a href="https://x.com/{{ site.x_username }}" class="btn btn-social" target="_blank" rel="noopener">X</a>
+    {% endif %}
+    
+    {% if site.bluesky_username %}
+      <a href="https://bsky.app/profile/{{ site.bluesky_username }}" class="btn btn-social" target="_blank" rel="noopener">Bluesky</a>
+    {% endif %}
+  </div>
+</div>
+
+<hr />
+
+<!-- Section Articles -->
+<section class="posts-section">
+  <h2>Blogposts</h2>
+  {% if site.posts.size > 0 %}
+    <ul class="posts-list">
+      {% for post in site.posts %}
+        <li>
+          <span class="post-date">{{ post.date | date: "%d/%m/%Y" }}</span> — 
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucun article publié pour le moment.</p>
+  {% endif %}
+</section>

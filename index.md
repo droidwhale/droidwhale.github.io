@@ -1,6 +1,6 @@
 ---
-layout: default
-title: "Hub"
+layout: home    
+title: "Droidwhale's blog 🐳"
 ---
 
 # Blogposts
