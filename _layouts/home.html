@@ -6,6 +6,25 @@ layout: default
   <div class="home-intro">
     {{ content }}
 
+  <section class="posts-section">
+    <h2>Blogposts</h2>
+    {% if site.posts.size > 0 %}
+      <ul class="posts-list">
+        {% for post in site.posts %}
+          <li>
+            <span class="post-date">{{ post.date | date: "%d/%m/%Y" }}</span> — 
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nothing to see here.</p>
+    {% endif %}
+  </section>
+</div>
+
+<hr />
+
     <div class="home-buttons">
       <a href="{{ '/about' | relative_url }}" class="btn btn-about">About</a>
       
@@ -34,22 +53,3 @@ layout: default
       {% endif %}
     </div>
   </div>
-
-  <hr />
-
-  <section class="posts-section">
-    <h2>Blogposts</h2>
-    {% if site.posts.size > 0 %}
-      <ul class="posts-list">
-        {% for post in site.posts %}
-          <li>
-            <span class="post-date">{{ post.date | date: "%d/%m/%Y" }}</span> — 
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>Nothing to see here.</p>
-    {% endif %}
-  </section>
-</div>
